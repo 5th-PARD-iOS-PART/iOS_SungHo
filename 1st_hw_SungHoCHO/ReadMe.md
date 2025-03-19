@@ -1,5 +1,7 @@
 
 
+< 자기소개 페이지 그리기 >
+
 <table>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/c33e0689-55d9-4284-969a-f74abf234fef" width="300"></td>
