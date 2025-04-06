@@ -11,8 +11,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header:
-                            HStack(spacing: 24) {
+                Section(header: HStack(spacing: 24) {
                     Button(action: {}) {
                         HStack(spacing: 12) {
                             Image("todo")
@@ -48,8 +47,7 @@ struct HomeView: View {
                             .frame(width: 24, height: 24)
                             .foregroundColor(.gray)
                     }
-                }
-                ) {}.listRowInsets(EdgeInsets())
+                }) {}.listRowInsets(EdgeInsets())
                 
                 Section() {
                     HStack(spacing: 24) {
@@ -83,6 +81,7 @@ struct HomeView: View {
                         Text("내 소비복권 긁기")
                             .font(.system(size: 12))
                             .foregroundColor(.blue)
+                        
                         Image(systemName: "chevron.right")
                             .foregroundColor(.gray)
                     }
@@ -90,9 +89,12 @@ struct HomeView: View {
                 
                 Section() {
                     ForEach(AccountData.modeling) { item in
-                        NavigationLink(destination: SpecificAccountView()) {
-                            AccountDataCell(accountData: item)
-                        }
+                        AccountDataCell(accountData: item)
+                        // NavigationLink '>' 없애기
+                            .background(NavigationLink(destination: SpecificAccountView()) {
+                                EmptyView()
+                            }
+                                .opacity(0))
                     }
                     
                     HStack {
@@ -198,7 +200,7 @@ struct HomeView: View {
                 }
                 
                 
-                Section(header: Text("조성호님을 위해 준비했어요").font(.system(size: 16))) {
+                Section(header: Text("조성호님을 위해 준비했어요").font(.system(size: 16)).offset(x: -12)) {
                     HStack(spacing: 12) {
                         HStack {
                             Text("혜택받는\n체크카드")
@@ -209,8 +211,8 @@ struct HomeView: View {
                                 .frame(width: 60, height: 60)
                         }
                         .frame(maxWidth: .infinity, minHeight: 32)
-                        .padding(4)
-                        .background(Color.gray.opacity(0.2))
+                        .padding(12)
+                        .background(Color.white)
                         .cornerRadius(20)
                         
                         HStack {
@@ -222,11 +224,14 @@ struct HomeView: View {
                                 .frame(width: 60, height: 60)
                         }
                         .frame(maxWidth: .infinity, minHeight: 32)
-                        .padding(4)
-                        .background(Color.gray.opacity(0.2))
+                        .padding(12)
+                        .background(Color.white)
                         .cornerRadius(20)
                     }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
+                
                 Section() {
                     ForEach(MockData.modeling) { item in
                         MockDataCell(mockData: item)

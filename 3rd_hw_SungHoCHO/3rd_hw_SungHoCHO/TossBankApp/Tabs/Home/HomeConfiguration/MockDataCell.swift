@@ -13,11 +13,11 @@ struct MockDataCell: View {
     
     var body: some View {
         HStack(spacing: 24) {
-            Image("data.img")
+            Image(mockData.img)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24, height: 24)
-            Text("data.name")
+            Text(mockData.name)
                 .font(.system(size: 16))
                 .foregroundColor(.gray)
             
