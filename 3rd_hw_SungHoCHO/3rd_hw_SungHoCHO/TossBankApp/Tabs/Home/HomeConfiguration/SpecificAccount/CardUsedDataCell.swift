@@ -17,6 +17,7 @@ struct CardUsedDataCell: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 36, height: 36)
+                .padding(.vertical, 8)
             
             VStack(alignment: .leading) {
                 Text(cardUsedData.name)
@@ -26,11 +27,20 @@ struct CardUsedDataCell: View {
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
+            
             Spacer()
+            
             VStack(alignment: .trailing) {
-                Text(cardUsedData.usedMoney)
-                    .font(.system(size: 16))
-                    .foregroundColor(.gray)
+                if cardUsedData.usedMoney.first == "+" {
+                    Text(cardUsedData.usedMoney)
+                        .font(.system(size: 16))
+                        .foregroundColor(.blue)
+                } else {
+                    Text(cardUsedData.usedMoney)
+                        .font(.system(size: 16))
+                        .foregroundColor(.gray)
+                }
+                
                 Text(cardUsedData.nowMoney)
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))

@@ -94,8 +94,11 @@ struct HomeView: View {
                             .background(NavigationLink(destination: SpecificAccountView()) {
                                 EmptyView()
                             }
+                                .navigationBarBackButtonHidden(false)
+                                .tint(.black)
                                 .opacity(0))
-                    }
+                    }.listRowSeparator(.hidden)
+                    
                     
                     HStack {
                         Text("대출 0")
@@ -236,8 +239,7 @@ struct HomeView: View {
                     ForEach(MockData.modeling) { item in
                         MockDataCell(mockData: item)
                     }
-                }
-                
+                }.listRowSeparator(.hidden)
                 
                 Section(footer:
                             HStack(spacing: 80) {

@@ -11,7 +11,7 @@ import SwiftUI
 struct _rd_hw_SungHoCHOApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TossBankAppView()
         }
     }
 }
