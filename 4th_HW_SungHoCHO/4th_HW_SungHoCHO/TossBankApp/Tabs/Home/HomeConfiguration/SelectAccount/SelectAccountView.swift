@@ -66,8 +66,16 @@ struct SelectAccountView: View {
                     }
                     .padding(.vertical, 8)
                     
-                    ForEach(SendAccountData.modeling[0]) { item in
-                        SendAccountDataCell(sendAccountData: item)
+//                    ForEach(SendAccountData.modeling[0]) { item in
+//                        SendAccountDataCell(sendAccountData: item)
+//                    }
+                    
+                    ForEach(SendAccountData.modeling[0]) { cell in
+                        Button {
+                            path.append("SendMoneyView")
+                        } label: {
+                            SendAccountDataCell(sendAccountData: cell)
+                        }
                     }
                 }
             }

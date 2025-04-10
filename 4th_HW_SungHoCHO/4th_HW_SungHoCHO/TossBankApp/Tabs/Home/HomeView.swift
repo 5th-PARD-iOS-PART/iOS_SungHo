@@ -91,17 +91,6 @@ struct HomeView: View {
                 }
                 
                 Section() {
-//                    ForEach(AccountData.modeling) { item in
-//                        AccountDataCell(accountData: item)
-//                        // NavigationLink '>' 없애기
-//                            .background(NavigationLink(destination: SpecificAccountView()) {
-//                                EmptyView()
-//                            }
-//                                .navigationBarBackButtonHidden(false)
-//                                .tint(.black)
-//                                .opacity(0))
-//                    }.listRowSeparator(.hidden)
-                    
                     ForEach(AccountData.modeling) { cell in
                         Button {
                             path.append("SpecificAccountView")
@@ -273,6 +262,7 @@ struct HomeView: View {
                 switch value {
                 case "SpecificAccountView": SpecificAccountView(path: $path)
                 case "SelectAccountView": SelectAccountView(path: $path)
+                case "SendMoneyView": SendMoneyView(path: $path)
                 default: Text("잘못된 페이지")
                 }
             }
