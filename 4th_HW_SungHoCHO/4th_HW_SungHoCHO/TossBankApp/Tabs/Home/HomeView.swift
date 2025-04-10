@@ -263,6 +263,7 @@ struct HomeView: View {
                 case "SpecificAccountView": SpecificAccountView(path: $path)
                 case "SelectAccountView": SelectAccountView(path: $path)
                 case "SendMoneyView": SendMoneyView(path: $path)
+                case "FinalCheckingView": FinalCheckingView(path: $path)
                 default: Text("잘못된 페이지")
                 }
             }

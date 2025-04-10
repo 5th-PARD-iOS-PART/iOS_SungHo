@@ -63,7 +63,7 @@ struct SendMoneyView: View {
             Spacer()
             
             Button(action: {
-                print("Tapped NextButton")
+                path.append("FinalCheckingView")
             }, label: {
                 Text("다음")
                     .font(.system(size: 20))
