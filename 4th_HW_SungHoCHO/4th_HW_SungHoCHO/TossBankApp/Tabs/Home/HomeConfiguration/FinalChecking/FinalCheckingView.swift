@@ -75,6 +75,7 @@ struct FinalCheckingView: View {
             Text("평생 수수료 무료")
                 .foregroundColor(.gray)
                 .padding(.vertical, 4)
+                .padding(.bottom, 4)
         }
     }
 }

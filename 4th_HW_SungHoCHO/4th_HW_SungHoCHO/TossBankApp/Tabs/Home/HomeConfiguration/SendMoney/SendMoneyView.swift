@@ -48,7 +48,7 @@ struct SendMoneyView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("얼마나 옮길까요?")
+                        TextField("얼마나 옮길까요?", text: .constant(""))
                             .font(.system(size: 32))
                         Text("잔액 26,656원")
                             .font(.system(size: 16))
