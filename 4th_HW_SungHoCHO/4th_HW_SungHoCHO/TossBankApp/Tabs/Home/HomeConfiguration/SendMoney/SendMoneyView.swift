@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SendMoneyView: View {
     
+    @State private var inputText: String = ""
     @Binding var path: NavigationPath
 
     var body: some View {
@@ -50,7 +51,7 @@ struct SendMoneyView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        TextField("얼마나 옮길까요?", text: .constant(""))
+                        TextField("얼마나 옮길까요?", text: $inputText)
                             .font(.system(size: 32))
                             .padding(.vertical, 4)
                         Text("잔액 26,656원")
@@ -78,27 +79,27 @@ struct SendMoneyView: View {
             
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                 GridRow() {
-                    NumberButton(number: "1")
-                    NumberButton(number: "2")
-                    NumberButton(number: "3")
+                    NumberButton(inputText: $inputText, number: "1")
+                    NumberButton(inputText: $inputText, number: "2")
+                    NumberButton(inputText: $inputText, number: "3")
                 }
                 
                 GridRow() {
-                    NumberButton(number: "4")
-                    NumberButton(number: "5")
-                    NumberButton(number: "6")
+                    NumberButton(inputText: $inputText, number: "4")
+                    NumberButton(inputText: $inputText, number: "5")
+                    NumberButton(inputText: $inputText, number: "6")
                 }
                 
                 GridRow() {
-                    NumberButton(number: "7")
-                    NumberButton(number: "8")
-                    NumberButton(number: "9")
+                    NumberButton(inputText: $inputText, number: "7")
+                    NumberButton(inputText: $inputText, number: "8")
+                    NumberButton(inputText: $inputText, number: "9")
                 }
                 
                 GridRow() {
-                    NumberButton(number: "00")
-                    NumberButton(number: "0")
-                    ImageButton(systemName: "delete.left")
+                    NumberButton(inputText: $inputText, number: "00")
+                    NumberButton(inputText: $inputText, number: "0")
+                    ImageButton(inputText: $inputText, systemName: "delete.left")
                 }
             }
         }
@@ -107,11 +108,15 @@ struct SendMoneyView: View {
 
 struct NumberButton: View {
     
+    @Binding var inputText: String
+    
     let number: String
     
     var body: some View {
         Button(action: {
             print("Tapped: \(number)")
+            guard !(inputText.isEmpty && (number == "0" || number == "00")) else { return }
+            inputText.append(number)
         }) {
             Text(number)
                 .font(.system(size: 24, weight: .bold))
@@ -123,11 +128,17 @@ struct NumberButton: View {
 
 struct ImageButton: View {
     
+    @Binding var inputText: String
     let systemName: String
     
     var body: some View {
         Button(action: {
-            print("Image button tapped!")
+            guard !inputText.isEmpty else {
+                print("Nothing to delete!")
+                return
+            }
+            inputText.removeLast()
+            print("DeleteButton tapped!")
         }) {
             Image(systemName: systemName)
                 .font(.system(size: 24, weight: .bold))
