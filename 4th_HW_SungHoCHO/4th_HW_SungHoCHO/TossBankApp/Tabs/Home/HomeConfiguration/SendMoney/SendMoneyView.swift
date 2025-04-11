@@ -9,15 +9,19 @@ import SwiftUI
 
 struct SendMoneyView: View {
     
+    @ObservedObject var viewModel = SharedData()
+    
     @State private var inputText: String = ""
     @Binding var path: NavigationPath
+    var isSelectedTextField: Bool = false
+    let won: String = "원"
 
     var body: some View {
         VStack(spacing: 0) {
             VStack {
                 VStack(alignment: .leading) {
                     HStack(spacing: 0) {
-                        Text("내 토스뱅크통장")
+                        Text(viewModel.sendAccount)
                         Text("에서")
                             .foregroundColor(.gray)
                         
@@ -26,7 +30,7 @@ struct SendMoneyView: View {
                     .font(.system(size: 24))
                     .padding(.vertical, 4)
                     
-                    Text("잔액 26,656원")
+                    Text(viewModel.balanceMoney)
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                 }
@@ -34,7 +38,7 @@ struct SendMoneyView: View {
                 
                 VStack(alignment: .leading) {
                     HStack(spacing: 0) {
-                        Text("내 WINGO통장")
+                        Text(viewModel.receiveAccount)
                         Text("으로")
                             .foregroundColor(.gray)
                         
@@ -43,7 +47,7 @@ struct SendMoneyView: View {
                     .font(.system(size: 24))
                     .padding(.vertical, 4)
                     
-                    Text("하나은행 15789165262107")
+                    Text(viewModel.AccountNumber)
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                 }
@@ -51,12 +55,31 @@ struct SendMoneyView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        TextField("얼마나 옮길까요?", text: $inputText)
-                            .font(.system(size: 32))
-                            .padding(.vertical, 4)
-                        Text("잔액 26,656원")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
+                        if inputText.isEmpty {
+                            TextField("얼마나 옮길까요?", text: $inputText)
+                                .font(.system(size: 32))
+                                .padding(.vertical, 4)
+                        } else {
+                            HStack {
+                                Text(inputText + won)
+                                    .font(.system(size: 32))
+                                    .padding(.vertical, 4)
+                            }
+                        }
+                        
+                        
+                        if inputText.isEmpty {
+                            Button(action: {
+                                inputText = "26656"
+                            }, label: {
+                                Text("잔액 26,656원 입력")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.gray)
+                            })
+                            .buttonStyle(.bordered)
+                        } else {
+                            Text("잔액 26,656원")
+                        }
                     }
                     .padding(EdgeInsets(top: 16, leading: 24, bottom: 16, trailing: 24))
                     
@@ -69,13 +92,23 @@ struct SendMoneyView: View {
             Button(action: {
                 path.append("FinalCheckingView")
             }, label: {
-                Text("다음")
-                    .font(.system(size: 20))
-                    .tint(.white)
-                    .padding(20)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                if inputText.isEmpty {
+                    Text("다음")
+                        .font(.system(size: 20))
+                        .tint(.white)
+                        .padding(20)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue.opacity(0.2))
+                } else {
+                    Text("다음")
+                        .font(.system(size: 20))
+                        .tint(.white)
+                        .padding(20)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                }
             })
+            .disabled(inputText.isEmpty)
             
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                 GridRow() {
@@ -103,6 +136,7 @@ struct SendMoneyView: View {
                 }
             }
         }
+        .navigationTitle("토스뱅크 송금")
     }
 }
 
@@ -146,6 +180,13 @@ struct ImageButton: View {
                 .frame(maxWidth: .infinity, minHeight: 80)
         }
     }
+}
+
+class SharedData: ObservableObject {
+    @Published var sendAccount: String = "내 토스뱅크통장"
+    @Published var receiveAccount: String = "내 WINGO통장"
+    @Published var AccountNumber: String = "하나은행 15789165262107"
+    @Published var balanceMoney: String = "잔액 26,656원"
 }
 
 

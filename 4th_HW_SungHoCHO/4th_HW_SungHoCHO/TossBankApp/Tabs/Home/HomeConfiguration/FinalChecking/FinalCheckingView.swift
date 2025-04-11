@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FinalCheckingView: View {
     
+    @ObservedObject var viewModel = SharedData()
+    
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -17,7 +19,7 @@ struct FinalCheckingView: View {
             
             VStack {
                 HStack(spacing: 0) {
-                    Text("내 WINGO통장")
+                    Text(viewModel.receiveAccount)
                         .foregroundColor(.blue)
                     Text("으로")
                 }
@@ -43,7 +45,7 @@ struct FinalCheckingView: View {
                 HStack {
                     Text("출금 계좌")
                     Spacer()
-                    Text("내 토스뱅크 통장")
+                    Text(viewModel.sendAccount)
                     Image(systemName: "chevron.right")
                 }
                 .padding(.vertical, 4)
@@ -51,7 +53,7 @@ struct FinalCheckingView: View {
                 HStack {
                     Text("입금 계좌")
                     Spacer()
-                    Text("하나은행 15789165262107")
+                    Text(viewModel.AccountNumber)
                 }
                 .padding(.vertical, 4)
             }
@@ -77,6 +79,7 @@ struct FinalCheckingView: View {
                 .padding(.vertical, 4)
                 .padding(.bottom, 4)
         }
+        .navigationTitle("토스뱅크 송금")
     }
 }
 
