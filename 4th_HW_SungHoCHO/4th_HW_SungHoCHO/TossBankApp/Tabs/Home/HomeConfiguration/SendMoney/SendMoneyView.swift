@@ -23,12 +23,13 @@ struct SendMoneyView: View {
                         Spacer()
                     }
                     .font(.system(size: 24))
+                    .padding(.vertical, 4)
                     
                     Text("잔액 26,656원")
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                 }
-                .padding(24)
+                .padding(EdgeInsets(top: 24, leading: 24, bottom: 16, trailing: 24))
                 
                 VStack(alignment: .leading) {
                     HStack(spacing: 0) {
@@ -39,22 +40,24 @@ struct SendMoneyView: View {
                         Spacer()
                     }
                     .font(.system(size: 24))
+                    .padding(.vertical, 4)
                     
                     Text("하나은행 15789165262107")
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                 }
-                .padding(24)
+                .padding(EdgeInsets(top: 16, leading: 24, bottom: 16, trailing: 24))
                 
                 HStack {
                     VStack(alignment: .leading) {
                         TextField("얼마나 옮길까요?", text: .constant(""))
                             .font(.system(size: 32))
+                            .padding(.vertical, 4)
                         Text("잔액 26,656원")
                             .font(.system(size: 16))
                             .foregroundColor(.gray)
                     }
-                    .padding(24)
+                    .padding(EdgeInsets(top: 16, leading: 24, bottom: 16, trailing: 24))
                     
                     Spacer()
                 }
