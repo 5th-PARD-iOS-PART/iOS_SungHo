@@ -10,7 +10,7 @@
     <td><img src="https://github.com/user-attachments/assets/c776605b-d80b-4cbf-b976-76b60342f4ee" width="300"></td>
   </tr>
   <tr>
-    <td align="center">[ 계좌 선택 뷰 ]</td>
+    <td align="center">[ 계좌 선택 뷰 ]</td>
     <td align="center">[ 금액 입력 (전) 뷰 ]</td>
     <td align="center">[ 금액 입력 (후) 뷰 ]</td>
     <td align="center">[ 최종 확인 뷰 ]</td>
