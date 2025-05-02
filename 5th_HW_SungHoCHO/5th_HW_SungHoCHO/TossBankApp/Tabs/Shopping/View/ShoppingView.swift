@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ShoppingView: View {
     
+    @StateObject private var viewModel = ShoppingViewModel()
+    
     @State private var selectedPicker: shoppingTabInfo = .all
     @Namespace private var animation
     
