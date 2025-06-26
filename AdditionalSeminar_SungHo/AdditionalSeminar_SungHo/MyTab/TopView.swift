@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct TopView: View {
+    
+    var dataModel: UserInfoModel
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .foregroundColor(.white)
                 .frame(height: 236)
-                .clipShape(RoundedCorner(radius: 24, corners: [.bottomLeft, .bottomRight]))
+                .clipShape(RoundedCorner(radius: 50, corners: [.bottomLeft, .bottomRight]))
                 .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
             
             VStack(alignment: .leading, spacing: 20) {
@@ -22,13 +25,13 @@ struct TopView: View {
                 
                 HStack(spacing: 60) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("맛있으면 울어")
+                        Text(dataModel.username)
                             .font(.system(size: 24, weight: .bold))
                         
                         HStack(spacing: 4) {
-                            Text("#맵찔이")
-                            Text("#향신료 NO")
-                            Text("#오이 NO")
+                            Text(dataModel.tastePreferences[0])
+                            Text(dataModel.tastePreferences[1])
+                            Text(dataModel.tastePreferences[2])
                         }
                         .font(.system(size: 12))
                         .foregroundColor(.orange)
@@ -54,5 +57,6 @@ struct TopView: View {
 }
 
 #Preview {
-    TopView()
+    let user = UserInfoModel.mockData
+    TopView(dataModel: user)
 }

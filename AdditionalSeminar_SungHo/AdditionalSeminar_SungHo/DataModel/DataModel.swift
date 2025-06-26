@@ -17,9 +17,10 @@ struct UserInfoModel: Hashable, Identifiable, Decodable {
     let todayTaste: [String]
 }
 
+
 extension UserInfoModel {
     static let mockData: UserInfoModel =
-        UserInfoModel(id: 1, username: "맛있으면 자꾸울어", tastePreferences: ["#맵찔이", "#향신료NO", "#오이 NO"], recentStatus: "다이어트", yesterdayEaten: "오코노미야끼", todayTaste: ["🥩육류", "🍞빵", "🇰🇷한식", "🍽️NO국물", "🥘헤비"])
-    
+        UserInfoModel(id: 1, username: "맛있으면 울어",tastePreferences: ["#맵찔이", "#향신료 NO", "#오이 NO"], recentStatus: "다이어트", yesterdayEaten: "오코노미야끼", todayTaste: ["🥩 육류", "🍞 빵", "🇰🇷  한식", "🍽️ NO 국물", "🥘 헤비"])
 }
+
 

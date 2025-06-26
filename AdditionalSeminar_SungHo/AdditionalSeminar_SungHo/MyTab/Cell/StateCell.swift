@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct StateCell: View {
+    
+    var dataModel: UserInfoModel
+    
     var body: some View {
         HStack {
             Text("요즘 나의 상태는")
@@ -15,7 +18,7 @@ struct StateCell: View {
             
             Spacer()
             
-            Text("다이어트")
+            Text(dataModel.recentStatus)
                 .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                 .font(.system(size: 12))
                 .foregroundColor(.orange)
@@ -34,5 +37,6 @@ struct StateCell: View {
 }
 
 #Preview {
-    StateCell()
+    let user = UserInfoModel.mockData
+    StateCell(dataModel: user)
 }

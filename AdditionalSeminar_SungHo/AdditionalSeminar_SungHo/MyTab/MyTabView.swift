@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct MyTabView: View {
+    
+    let user = UserInfoModel.mockData
+    
     var body: some View {
         VStack(spacing: 28) {
-            TopView()
+            TopView(dataModel: user)
                 
-            StateCell()
+            StateCell(dataModel: user)
             
-            FoodCell()
+            FoodCell(dataModel: user)
             
             HelpCell()
         }
